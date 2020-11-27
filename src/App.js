@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react';
+// ========== BASE DEPENDENCIES ==========
+
+import React, { useEffect } from 'react';
 import './App.css';
 
+// ========== GAME FUNCTIONS ==========
 import boardConstruct from './assets/functions/boardconstruct';
+
+// ========== DATA ==========
 import board from './assets/data/board';
 
 function App() {
