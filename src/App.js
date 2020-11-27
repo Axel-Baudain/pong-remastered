@@ -22,7 +22,7 @@ function App() {
 
   return (
     <div className="App">
-      Pong remastered
+      <h1 className="main-title">Pong remastered</h1>
     </div>
   );
 }
