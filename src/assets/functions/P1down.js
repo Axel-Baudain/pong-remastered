@@ -9,7 +9,7 @@ const P1down = () => {
     '1P-upmid',
     '1P-mid',
     '1P-downmid',
-    '1Pdown'
+    '1P-downer'
   ];
 
   playerone.forEach((cell) => {
