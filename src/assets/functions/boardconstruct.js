@@ -53,6 +53,9 @@ const boardConstruct = (board) => {
           newBoardCell.classList.add('2P-downer');
           newBoardCell.classList.add('playertwo');
           break;
+        case 'o':
+          newBoardCell.classList.add('ball');
+          break;
         default:
           break;
       }

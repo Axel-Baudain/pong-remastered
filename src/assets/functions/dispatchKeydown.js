@@ -2,10 +2,15 @@ import P1up from './P1up';
 import P1down from './P1down';
 import P2up from './P2up';
 import P2down from './P2down';
+import ballPaths from './ballPaths';
 
 const dispatchKeydown = (evt) => {
+
   switch(evt.code) {
     default:
+      break;
+    case 'KeyL':
+      ballPaths.init();
       break;
     // ============== PLAYER ONE CASES ==============
     case 'KeyW':

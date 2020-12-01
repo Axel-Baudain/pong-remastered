@@ -1,5 +1,4 @@
 const P2up = () => {
-  console.log('Move up P2');
   let oldYPosition = [];
   let playertwo = document.querySelectorAll('.playertwo');
 

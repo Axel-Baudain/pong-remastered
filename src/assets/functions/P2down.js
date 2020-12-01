@@ -1,5 +1,4 @@
 const P2down = () => {
-  console.log('Move down P2');
   let oldYPosition = [];
   let playertwo = document.querySelectorAll('.playertwo');
 
@@ -18,7 +17,6 @@ const P2down = () => {
   let newPosition = oldYPosition.map((oldposition) => parseInt(oldposition) + 1);
   let iterate = 0;
 
-  console.log(newPosition.includes(31));
   if (!newPosition.includes(31)) {
     playertwo.forEach((cell) => {
     cell.classList.remove('playertwo');
