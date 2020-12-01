@@ -18,11 +18,9 @@ function App() {
     document.title = 'Pong remastered';
   }, []);
 
-
-
   return (
     <div className="App">
-      <h1 className="main-title">Pong remastered</h1>
+      <h1 className="main-title">Pong remastered - Work In progress... -</h1>
     </div>
   );
 }
