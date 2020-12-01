@@ -30,14 +30,14 @@ const ballEntity = {
   },
 
   launchBall: () => {
-    let moveLeft = setInterval(() => {
+    let startMoving = setInterval(() => {
       let xPos = parseInt(ballEntity.ball.dataset.x, 10);
       let yPos = parseInt(ballEntity.ball.dataset.y, 10);
 
-      checkNextPos(xPos + 1, yPos)
+      checkNextPos(xPos - 1, yPos)
 
       ballEntity.ball.classList.toggle('ball');
-      ballEntity.ball = document.querySelector(`[data-x="${xPos + 1}"][data-y="${yPos}"]`);
+      ballEntity.ball = document.querySelector(`[data-x="${xPos - 1}"][data-y="${yPos}"]`);
       ballEntity.ball.classList.toggle('ball');
     }, 200);
   }
