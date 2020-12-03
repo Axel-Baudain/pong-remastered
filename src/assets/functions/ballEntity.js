@@ -1,6 +1,8 @@
-import checkNextPos from './checkNextPos';
+import checkNextxPos from './checkNextxPos';
+import checkNextyPos from './checkNextyPos';
 import randomLaunchDirection from './randomLaunchDirection';
 import fetchNextPos from './fetchNextPos';
+import ballRedirect from './ballRedirect';
 
 
 const ballEntity = {
@@ -8,17 +10,17 @@ const ballEntity = {
   gameStarted: false,
   ball: null,
   allPaths: {
-    'rightupper': 'UUR',
-    'rightupmid': 'UR',
-    'rightmid': 'R',
-    'rightdownmid': 'DR',
-    'rightdowner': 'DDR',
+    'rightupper': ['U', 'UR'],
+    'rightupmid': ['UR'],
+    'rightmid': ['R'],
+    'rightdownmid': ['DR'],
+    'rightdowner': ['D', 'DR'],
 
-    'leftupper': 'UUL',
-    'leftupmid': 'UL',
-    'leftmid': 'L',
-    'leftdownmid': 'DL',
-    'leftdowner': 'DDL',
+    'leftupper': ['U', 'UL'],
+    'leftupmid': ['UL'],
+    'leftmid': ['L'],
+    'leftdownmid': ['DL'],
+    'leftdowner': ['D', 'DL'],
   },
 
   currentDirection: null,
@@ -36,21 +38,32 @@ const ballEntity = {
   launchBall: () => {
     ballEntity.currentDirection = randomLaunchDirection(ballEntity.allPaths);
     console.log(ballEntity.currentDirection);
+    let iterate = 0;
 
     let startMoving = setInterval(() => {
+      if (iterate >= ballEntity.currentDirection.length) {
+        iterate = 0;
+      }
+
       let xPos = parseInt(ballEntity.ball.dataset.x, 10);
       let yPos = parseInt(ballEntity.ball.dataset.y, 10);
-      console.log(fetchNextPos(xPos, yPos, ballEntity.currentDirection));
 
+      // CONSECUTIVE NEW POSITION
+      // If next position is not valid
+      if (checkNextxPos(fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate])) && checkNextyPos(fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]))) {
+        const newBallCoordinates = fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]);
+        xPos = newBallCoordinates[0];
+        yPos = newBallCoordinates[1];
+      } else {
+        ballRedirect(fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]), ballEntity.currentDirection, ballEntity.allPaths);
+      }
+
+      ballRedirect(fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]), ballEntity.currentDirection, ballEntity.allPaths);
+      return;
       ballEntity.ball.classList.toggle('ball');
-
-      // fetchnextpos Function
-      // if checkpos is valid, currentDirection
-      // else changeDirection, fetchnextpos, checkpos, currentDirection
-
-
-      // ballEntity.ball = document.querySelector(`[data-x="${xPos - 1}"][data-y="${yPos}"]`);
+      ballEntity.ball = document.querySelector(`[data-x="${xPos}"][data-y="${yPos}"]`);
       ballEntity.ball.classList.toggle('ball');
+      iterate++;
     }, 500);
   }
 
