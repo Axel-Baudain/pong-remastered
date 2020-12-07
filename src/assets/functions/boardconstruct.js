@@ -1,5 +1,5 @@
 const boardConstruct = (board) => {
-  let appcontainer = document.querySelector(".App");
+  let appcontainer = document.querySelector(".gameboard");
   for (let iterateY = 0; iterateY < board.length; iterateY++) {
     let newBoardLine = document.createElement('div');
     newBoardLine.classList.add('board-line');
