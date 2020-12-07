@@ -26,6 +26,11 @@ code {
   border: 1px solid rgba(255, 255, 255, 0.123);
 }
 
+.edge
+{
+  background-color: black;
+}
+
 .playerone, .playertwo
 {
   background-color: white;

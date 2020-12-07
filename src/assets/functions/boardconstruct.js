@@ -56,6 +56,9 @@ const boardConstruct = (board) => {
         case 'o':
           newBoardCell.classList.add('ball');
           break;
+        case '*':
+          newBoardCell.classList.add('edge');
+          break;
         default:
           break;
       }
