@@ -9,21 +9,21 @@ const ballEntity = {
   gameStarted: false,
   ball: null,
   allPaths: {
-    'rightupper': ['U', 'UR'],
-    'rightupmid': ['UR'],
+    // 'rightupper': ['U', 'UR'],
+    // 'rightupmid': ['UR'],
     'rightmid': ['R'],
-    'rightdownmid': ['DR'],
-    'rightdowner': ['D', 'DR'],
+    // 'rightdownmid': ['DR'],
+    // 'rightdowner': ['D', 'DR'],
 
-    'leftupper': ['U', 'UL'],
-    'leftupmid': ['UL'],
-    'leftmid': ['L'],
-    'leftdownmid': ['DL'],
-    'leftdowner': ['D', 'DL'],
+    // 'leftupper': ['U', 'UL'],
+    // 'leftupmid': ['UL'],
+    // 'leftmid': ['L'],
+    // 'leftdownmid': ['DL'],
+    // 'leftdowner': ['D', 'DL'],
   },
   P1Score: null,
   P2Score: null,
-  delay: 200,
+  delay: 100,
 
   currentDirection: null,
 
@@ -49,22 +49,29 @@ const ballEntity = {
       let xPos = parseInt(ballEntity.ball.dataset.x, 10);
       let yPos = parseInt(ballEntity.ball.dataset.y, 10);
 
+      ballEntity.currentDirection = ballRedirect(xPos, yPos, ballEntity.currentDirection);
+
+
+      console.log(ballEntity.currentDirection);
+
       const newBallCoordinates = fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]);
       xPos = newBallCoordinates[0];
       yPos = newBallCoordinates[1];
 
-      if (xPos < 1 || xPos > 68) {
-        ballEntity.delay = 100000000;
+      if (xPos < 1 || xPos > 70) {
+        ballEntity.delay = -1;
         return;
       }
-
-      ballEntity.currentDirection = ballRedirect(fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]), ballEntity.currentDirection, ballEntity.allPaths);
 
       ballEntity.ball.classList.toggle('ball');
       ballEntity.ball = document.querySelector(`[data-x="${xPos}"][data-y="${yPos}"]`);
       ballEntity.ball.classList.toggle('ball');
       iterate++;
     }, ballEntity.delay);
+    
+    const restartGame = () => {
+      clearInterval(startMoving);
+    }
   },
 }
 

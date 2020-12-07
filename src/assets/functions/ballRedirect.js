@@ -1,10 +1,9 @@
-const ballRedirect = (XYtargettedPos, currentDirection, allDirections) => {
+const ballRedirect = (xPos, yPos, currentDirection) => {
 
-  let xPos = XYtargettedPos[0];
-  let yPos = XYtargettedPos[1];
-
-  let leftTile = document.querySelector(`[data-x="${xPos}"][data-y="${yPos}"]`);
-  let rightTile = document.querySelector(`[data-x="${xPos}"][data-y="${yPos}"]`);
+  let leftTile = document.querySelector(`[data-x="${xPos - 1}"][data-y="${yPos}"]`);
+  let rightTile = document.querySelector(`[data-x="${xPos + 1}"][data-y="${yPos}"]`);
+  let upTile = document.querySelector(`[data-x="${xPos}"][data-y="${yPos - 1}"]`);
+  let downTile = document.querySelector(`[data-x="${xPos}"][data-y="${yPos + 1}"]`);
 
   // console.log(rightTile.classList);
   // return currentDirection;
@@ -12,71 +11,73 @@ const ballRedirect = (XYtargettedPos, currentDirection, allDirections) => {
   // RELATED TO PLAYER ONE PAD
   if (leftTile.classList.contains("playerone")) {
     if (leftTile.classList.contains("1P-upper")) {
-      return 'UUR';
+      return ['U', 'UR'];
     }
     if (leftTile.classList.contains("1P-upmid")) {
-      return 'UR';
+      return ['UR'];
     }
     if (leftTile.classList.contains("1P-mid")) {
-      return 'R';
+      return ['R'];
     }
     if (leftTile.classList.contains("1P-downmid")) {
-      return 'DR';
+      return ['DR'];
     }
     if (leftTile.classList.contains("1P-downer")) {
-      return 'DDR';
+      return ['D', 'DR'];
     }
   }
 
   // RELATED TO PLAYER TWO PAD
   if (rightTile.classList.contains("playertwo")) {
     if (rightTile.classList.contains("2P-upper")) {
-      return 'UUL';
+      return ['U', 'UL'];
     }
     if (rightTile.classList.contains("2P-upmid")) {
-      return 'UL';
+      return ['UL'];
     }
     if (rightTile.classList.contains("2P-mid")) {
       console.log('okay');
-      return 'L';
+      return ['L'];
     }
     if (rightTile.classList.contains("2P-downmid")) {
-      return 'DL';
+      return ['DL'];
     }
     if (rightTile.classList.contains("2P-downer")) {
-      return 'DDL';
+      return ['D', 'DL'];
     }
   }
 
-  // RELATED TO Y TOO HIGH
-  if (yPos - 1 < 0) {
-    if (currentDirection === 'UL') {
-      return 'DL';
+  // RELATED TO UP EDGES
+  if (upTile.classList.contains("edge")) {
+    console.log('Il y a une limite au dessus de la balle');
+    if (currentDirection[0] === 'U' && currentDirection[1] === 'UR') {
+      return ['D', 'DR']
     }
-    if (currentDirection === 'UUL') {
-      return 'DDL';
+    if (currentDirection[0] === 'UR') {
+      return ['DR']
     }
-    if (currentDirection === 'UR') {
-      return 'DR';
+    if (currentDirection[0] === 'U' && currentDirection[1] === 'UL') {
+      return ['D', 'DL'];
     }
-    if (currentDirection === 'UUR') {
-      return 'DDR';
+    if (currentDirection[0] === 'UL') {
+      return ['DL']
     }
   }
 
-  // RELATED TO Y TOO LOW
-  if (yPos + 1 > 30) {
-    if (currentDirection === 'DL') {
-      return 'UL';
+  // RELATED TO DOWN EDGES
+  if (downTile.classList.contains("edge")) {
+    console.log('Il y a une limite sous la balle');
+    if (currentDirection[0] === 'D' && currentDirection[1] === 'DR') {
+      return ['U', 'UR'];
     }
-    if (currentDirection === 'DDL') {
-      return 'UUL';
+    if (currentDirection[0] === 'DR') {
+      return ['UR'];
     }
-    if (currentDirection === 'DR') {
-      return 'UR';
+    if (currentDirection[0] === 'D' && currentDirection[1] === 'DL') {
+      return ['U', 'UL'];
     }
-    if (currentDirection === 'DDR') {
-      return 'UUR';
+    if (currentDirection[0] === 'DL') {
+      return ['UL'];
     }
   }
 

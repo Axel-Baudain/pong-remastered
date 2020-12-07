@@ -17,7 +17,7 @@ const P1down = () => {
   let newPosition = oldYPosition.map((oldposition) => parseInt(oldposition) + 1);
   let iterate = 0;
 
-  if (!newPosition.includes(31)) {
+  if (!newPosition.includes(32)) {
     playerone.forEach((cell) => {
     cell.classList.remove('playerone');
     cell.classList.remove('1P-upper');
