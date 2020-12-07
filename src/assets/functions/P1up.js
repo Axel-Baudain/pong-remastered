@@ -30,7 +30,7 @@ const P1up = () => {
     newPosition.forEach((newPosition) => {
       let targettedCell = document.querySelector(`[data-x="0"][data-y="${newPosition}"]`);
       targettedCell.classList.add('playerone');
-      targettedCell.classList.add(`'${classPositions[iterate]}'`);
+      targettedCell.classList.add(classPositions[iterate]);
       iterate++;
     })
   } else {

@@ -10,17 +10,17 @@ const ballEntity = {
   gameStarted: false,
   ball: null,
   allPaths: {
-    'rightupper': ['U', 'UR'],
-    'rightupmid': ['UR'],
+    // 'rightupper': ['U', 'UR'],
+    // 'rightupmid': ['UR'],
     'rightmid': ['R'],
-    'rightdownmid': ['DR'],
-    'rightdowner': ['D', 'DR'],
+    // 'rightdownmid': ['DR'],
+    // 'rightdowner': ['D', 'DR'],
 
-    'leftupper': ['U', 'UL'],
-    'leftupmid': ['UL'],
-    'leftmid': ['L'],
-    'leftdownmid': ['DL'],
-    'leftdowner': ['D', 'DL'],
+    // 'leftupper': ['U', 'UL'],
+    // 'leftupmid': ['UL'],
+    // 'leftmid': ['L'],
+    // 'leftdownmid': ['DL'],
+    // 'leftdowner': ['D', 'DL'],
   },
 
   currentDirection: null,
@@ -54,17 +54,15 @@ const ballEntity = {
         const newBallCoordinates = fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]);
         xPos = newBallCoordinates[0];
         yPos = newBallCoordinates[1];
-      } else {
-        ballRedirect(fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]), ballEntity.currentDirection, ballEntity.allPaths);
       }
+      
+      ballEntity.currentDirection = ballRedirect(fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]), ballEntity.currentDirection, ballEntity.allPaths);
 
-      ballRedirect(fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]), ballEntity.currentDirection, ballEntity.allPaths);
-      return;
       ballEntity.ball.classList.toggle('ball');
       ballEntity.ball = document.querySelector(`[data-x="${xPos}"][data-y="${yPos}"]`);
       ballEntity.ball.classList.toggle('ball');
       iterate++;
-    }, 500);
+    }, 50);
   }
 
 }

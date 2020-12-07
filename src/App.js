@@ -20,7 +20,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className="main-title">Pong remastered - Work In progress... -</h1>
+      <h1 className="main-title"><span className="P1-score">0</span> - <span className="P2-score">0</span></h1>
     </div>
   );
 }
