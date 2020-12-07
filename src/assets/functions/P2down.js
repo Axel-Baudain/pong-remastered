@@ -28,7 +28,7 @@ const P2down = () => {
     });
 
     newPosition.forEach((newPosition) => {
-      let targettedCell = document.querySelector(`[data-x="69"][data-y="${newPosition}"]`);
+      let targettedCell = document.querySelector(`[data-x="70"][data-y="${newPosition}"]`);
       targettedCell.classList.add('playertwo');
       targettedCell.classList.add(classPositions[iterate]);
       iterate++;
