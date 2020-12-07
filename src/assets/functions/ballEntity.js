@@ -9,17 +9,17 @@ const ballEntity = {
   gameStarted: false,
   ball: null,
   allPaths: {
-    // 'rightupper': ['U', 'UR'],
-    // 'rightupmid': ['UR'],
+    'rightupper': ['U', 'UR'],
+    'rightupmid': ['UR'],
     'rightmid': ['R'],
-    // 'rightdownmid': ['DR'],
-    // 'rightdowner': ['D', 'DR'],
+    'rightdownmid': ['DR'],
+    'rightdowner': ['D', 'DR'],
 
-    // 'leftupper': ['U', 'UL'],
-    // 'leftupmid': ['UL'],
-    // 'leftmid': ['L'],
-    // 'leftdownmid': ['DL'],
-    // 'leftdowner': ['D', 'DL'],
+    'leftupper': ['U', 'UL'],
+    'leftupmid': ['UL'],
+    'leftmid': ['L'],
+    'leftdownmid': ['DL'],
+    'leftdowner': ['D', 'DL'],
   },
   P1Score: null,
   P2Score: null,
@@ -70,6 +70,7 @@ const ballEntity = {
     }, ballEntity.delay);
     
     const restartGame = () => {
+      // TODO : System to restart the game when someone lose.
       clearInterval(startMoving);
     }
   },
