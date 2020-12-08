@@ -2,6 +2,7 @@ import randomLaunchDirection from './randomLaunchDirection';
 import fetchNextPos from './fetchNextPos';
 import ballRedirect from './ballRedirect';
 import clearboard from './clearboard';
+import boardConstruct from './boardconstruct';
 
 
 const ballEntity = {
@@ -22,7 +23,9 @@ const ballEntity = {
     'leftdowner': ['D', 'DL'],
   },
   P1Score: null,
-  P2Score: null,
+  P1value: null,
+  P2Score: 0,
+  P2value: 0,
   delay: 100,
 
   currentDirection: null,
@@ -58,8 +61,21 @@ const ballEntity = {
       xPos = newBallCoordinates[0];
       yPos = newBallCoordinates[1];
 
-      if (xPos < 1 || xPos > 70) {
+      console.log('Je tourne encore');
+
+      if (xPos > 70) {
         ballEntity.delay = -1;
+        ballEntity.P1value++;
+        ballEntity.P1Score.innerText = ballEntity.P1value;
+        restartGame();
+        return;
+      }
+
+      if (xPos < 1) {
+        ballEntity.delay = -1;
+        ballEntity.P2value++;
+        ballEntity.P2Score.innerText = ballEntity.P2value;
+        restartGame();
         return;
       }
 
@@ -71,6 +87,7 @@ const ballEntity = {
     
     const restartGame = () => {
       // TODO : System to restart the game when someone lose.
+      ballEntity.gameStarted = false;
       clearInterval(startMoving);
     }
   },
