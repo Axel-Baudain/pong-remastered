@@ -1,4 +1,24 @@
-# Getting Started with Create React App
+# Pong remastered [MVP]
+
+## Contrôles
+
+### Joueur 1
+
+`Z` : Déplacer le pad de gauche vers le haut
+
+`S` : Déplacer le pad de gauche vers le bas
+
+### Joueur 2
+
+`Numpad8` : Déplacer le pad de droite vers le haut
+
+`Numpad5` : Déplacer le pad de droite vers le bas
+
+### Balle
+
+`L` : Initialiser le lancement de la balle*
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
