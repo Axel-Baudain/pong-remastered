@@ -26,7 +26,7 @@ const ballEntity = {
   P1value: null,
   P2Score: 0,
   P2value: 0,
-  delay: 100,
+  delay: 0,
 
   currentDirection: null,
 
@@ -43,6 +43,7 @@ const ballEntity = {
   launchBall: () => {
     ballEntity.currentDirection = randomLaunchDirection(ballEntity.allPaths);
     let iterate = 0;
+    ballEntity.delay = 50;
 
     let startMoving = setInterval(() => {
       if (iterate >= ballEntity.currentDirection.length) {
@@ -54,9 +55,6 @@ const ballEntity = {
 
       ballEntity.currentDirection = ballRedirect(xPos, yPos, ballEntity.currentDirection);
 
-
-      console.log(ballEntity.currentDirection);
-
       const newBallCoordinates = fetchNextPos(xPos, yPos, ballEntity.currentDirection[iterate]);
       xPos = newBallCoordinates[0];
       yPos = newBallCoordinates[1];
@@ -64,7 +62,6 @@ const ballEntity = {
       console.log('Je tourne encore');
 
       if (xPos > 70) {
-        ballEntity.delay = -1;
         ballEntity.P1value++;
         ballEntity.P1Score.innerText = ballEntity.P1value;
         restartGame();
@@ -72,7 +69,6 @@ const ballEntity = {
       }
 
       if (xPos < 1) {
-        ballEntity.delay = -1;
         ballEntity.P2value++;
         ballEntity.P2Score.innerText = ballEntity.P2value;
         restartGame();
@@ -87,8 +83,11 @@ const ballEntity = {
     
     const restartGame = () => {
       // TODO : System to restart the game when someone lose.
-      ballEntity.gameStarted = false;
       clearInterval(startMoving);
+      ballEntity.ball.classList.toggle('ball');
+      ballEntity.ball = document.querySelector("[data-x='36'][data-y='16']");
+      ballEntity.ball.classList.toggle('ball');
+      ballEntity.gameStarted = false;
     }
   },
 }

@@ -5,9 +5,6 @@ const ballRedirect = (xPos, yPos, currentDirection) => {
   let upTile = document.querySelector(`[data-x="${xPos}"][data-y="${yPos - 1}"]`);
   let downTile = document.querySelector(`[data-x="${xPos}"][data-y="${yPos + 1}"]`);
 
-  // console.log(rightTile.classList);
-  // return currentDirection;
-
   // RELATED TO PLAYER ONE PAD
   if (leftTile.classList.contains("playerone")) {
     if (leftTile.classList.contains("1P-upper")) {
@@ -36,7 +33,6 @@ const ballRedirect = (xPos, yPos, currentDirection) => {
       return ['UL'];
     }
     if (rightTile.classList.contains("2P-mid")) {
-      console.log('okay');
       return ['L'];
     }
     if (rightTile.classList.contains("2P-downmid")) {
@@ -49,7 +45,6 @@ const ballRedirect = (xPos, yPos, currentDirection) => {
 
   // RELATED TO UP EDGES
   if (upTile.classList.contains("edge")) {
-    console.log('Il y a une limite au dessus de la balle');
     if (currentDirection[0] === 'U' && currentDirection[1] === 'UR') {
       return ['D', 'DR']
     }
@@ -66,7 +61,6 @@ const ballRedirect = (xPos, yPos, currentDirection) => {
 
   // RELATED TO DOWN EDGES
   if (downTile.classList.contains("edge")) {
-    console.log('Il y a une limite sous la balle');
     if (currentDirection[0] === 'D' && currentDirection[1] === 'DR') {
       return ['U', 'UR'];
     }
