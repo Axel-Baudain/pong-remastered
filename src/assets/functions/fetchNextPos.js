@@ -9,7 +9,6 @@ const fetchNextPos = (xPos, yPos, providedDirection) => {
 
     // UP RIGHT
     case 'UR':
-      console.log("UR");
       return [xPos + 1, yPos - 1];
 
     // RIGHT
